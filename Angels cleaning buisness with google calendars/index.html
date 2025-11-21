@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Angel's Cleaning Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0077cc;
+      --secondary: #00768d;
+      --light-bg: #ffffff;
+      --text: #333;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--light-bg);
+      color: var(--text);
+      scroll-behavior: smooth;
+    }
+
+    .top-strip {
+      background: #0077cc;
+      color: #fff;
+      font-size: 0.9rem;
+      padding: 8px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      text-align: center;
+      flex-wrap: wrap;
+    }
+    .top-strip a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+    .top-strip a:hover { opacity: 0.85; }
+    .top-strip .left { display:flex; gap:16px; align-items:center; justify-content:center; }
+    .top-strip .right { color:#fff; margin-left:8px; }
+
+    header {
+      background: linear-gradient(to right, var(--secondary), var(--primary));
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      height: 50px;
+      width: auto;
+      border-radius: 8px;
+    }
+
+    .logo h1 {
+      font-size: 1.5rem;
+      margin: 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .nav-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .nav-dropdown > a {
+      margin: 0 15px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .nav-dropdown > a:hover {
+      text-decoration: underline;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: 6px;
+      flex-direction: column;
+      gap: 4px;
+      padding: 8px 0;
+      min-width: 160px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+      z-index: 10;
+      margin-top: 0;
+    }
+    .nav-dropdown:hover .dropdown-menu {
+      display: flex;
+    }
+    .dropdown-menu a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 16px;
+      margin: 0;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+    .dropdown-menu a:hover {
+      background: rgba(255,255,255,0.1);
+      text-decoration: none;
+    }
+
+    .hero {
+      background: url('images/cleaning-products.jpg') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+      position: relative;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 75, 141, 0.6);
+    }
+    .hero h1, .hero p, .hero a {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      line-height: 1.05;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 760px;
+      margin: 0 auto 20px;
+      opacity: 0.95;
+    }
+
+    .btn {
+      background-color: var(--primary);
+      color: white;
+      padding: 14px 25px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background-color: var(--secondary);
+      transform: scale(1.05);
+    }
+
+    .hero .hero-cta { display:flex; justify-content:center; gap:12px; margin-top:10px; }
+    .mobile-only { display: none; }
+    .desktop-only { display: inline-block; }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 36px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(2px);
+    }
+
+    section {
+      background: white;
+      margin: 40px auto;
+      padding: 50px 20px;
+      max-width: 900px;
+      border-radius: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: var(--secondary);
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .service {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px;
+      text-align: left;
+    }
+
+    .service-thumb {
+      width: 64px;
+      height: 64px;
+      flex: 0 0 64px;
+      border-radius: 8px;
+      object-fit: cover;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    }
+
+    .service .label {
+      font-weight: 600;
+      color: var(--text);
+      display:block;
+    }
+
+    .service .sub {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    footer {
+      background: var(--secondary);
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      font-size: 0.9rem;
+      margin-top: 50px;
+    }
+
+    .before-after-section {
+      background: white;
+      margin: 30px auto;
+      padding: 24px;
+      max-width: 1100px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    .ba-grid {
+      display: flex;
+      gap: 18px;
+      align-items: stretch;
+      justify-content: center;
+    }
+    .ba-item {
+      flex: 1 1 0;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+    .ba-label {
+      font-weight: 700;
+      color: var(--secondary);
+      margin-bottom: 10px;
+    }
+    .ba-item img {
+      width: 100%;
+      max-width: 520px;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
+    .ba-controls {
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      margin-top:14px;
+    }
+    .ba-btn {
+      background: var(--primary);
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+    }
+    .ba-dots { margin-top:10px; display:flex; gap:8px; justify-content:center; }
+    .ba-dot { width:10px; height:10px; border-radius:50%; background:#ddd; cursor:pointer; }
+    .ba-dot.active { background: var(--primary); }
+
+    .contact-wrap {
+      background: white;
+      margin: 40px auto;
+      padding: 40px 20px;
+      max-width: 900px;
+      border-radius: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .contact-icon {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .card {
+      padding: 0;
+    }
+
+    @media (min-width: 601px) {
+      .hero { padding: 120px 20px; }
+      .hero-inner { padding: 48px; }
+    }
+
+    @media (max-width: 600px) {
+      .top-strip { flex-direction: column; text-align: center; padding: 10px 12px; }
+      .top-strip .left { flex-direction: column; gap:6px; }
+      header { flex-direction: column; text-align: center; }
+      nav { margin-top: 10px; }
+      .dropdown-menu { position: static; background: none; box-shadow: none; padding: 4px 0; }
+      .nav-dropdown:hover .dropdown-menu { display: none; }
+      .nav-dropdown.active .dropdown-menu { display: flex; }
+      .mobile-only { display: inline-block; }
+      .desktop-only { display: none; }
+      .contact-wrap { padding: 24px 16px; }
+      .contact-info h2 { font-size: 1.4rem; }
+      .contact-row { flex-direction: column; align-items: center; }
+    }
+
+    @media (max-width: 700px) {
+      .ba-grid { flex-direction: column; gap:12px; }
+      .ba-item img { height: 220px; max-width: 90%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-strip" role="contentinfo" aria-label="Contact and availability">
+    <div class="left">
+      <a href="mailto:info@angelscleaning.ca" aria-label="Email Angel's Cleaning Services">info@angelscleaning.ca</a>
+      <a href="tel:+12505551234" aria-label="Call Angel's Cleaning Services">(250) 555-1234</a>
+    </div>
+    <div class="right">Availability: Mon–Fri 8:00am–6:00pm</div>
+  </div>
+
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Angel's Cleaning Services Logo">
+      <h1>Angel's Cleaning Services</h1>
+    </div>
+    <nav>
+      <div class="nav-dropdown" id="services-dropdown">
+        <a href="#services">Services</a>
+        <div class="dropdown-menu">
+          <a href="commercial.html">Commercial Cleans</a>
+          <a href="residential.html">Residential</a>
+          <a href="airbnb.html">Air BnBs</a>
+        </div>
+      </div>
+      <a href="Contact-us.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <h1>Expert Cleaning Services Comox Valley, BC</h1>
+      <p>Licensed, insured, and trusted. Text to book an appointment.</p>
+      <div class="hero-cta">
+        <!-- Mobile: opens SMS app (visible only on small screens) -->
+        <a href="sms:+12505551234" class="btn mobile-only" aria-label="Text Angel's Cleaning Services">Text</a>
+        <!-- Desktop: clickable tel link with cleaner styling -->
+        <a href="tel:+12505551234" class="btn desktop-only" aria-label="Call Angel's Cleaning Services">Call/Text: (250) 555-1234</a>
+      </div>
+    </div>
+  </div>
+
+  <section id="services">
+    <h2>Our Services</h2>
+    <div class="services-grid">
+      <a href="commercial.html" class="service" style="text-decoration: none; color: inherit;">
+        <img src="images/commercail-thumb.jpeg" alt="" class="service-thumb">
+        <div>
+          <span class="label">Commercial Cleans</span>
+          <span class="sub">Offices & retail</span>
+        </div>
+      </a>
+      <a href="residential.html" class="service" style="text-decoration: none; color: inherit;">
+        <img src="images/residental-thumb.jpeg" alt="" class="service-thumb">
+        <div>
+          <span class="label">Residential</span>
+          <span class="sub">Homes & condos</span>
+        </div>
+      </a>
+      <a href="airbnb.html" class="service" style="text-decoration: none; color: inherit;">
+        <img src="images/image-airbnb-thumb.webp" alt="" class="service-thumb">
+        <div>
+          <span class="label">Air BnBs</span>
+          <span class="sub">Turnovers & linen</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Before / After rotating pairs -->
+  <section id="before-after" class="before-after-section" aria-label="Before and After gallery">
+    <h2>Before & After</h2>
+    <div class="ba-grid" role="list">
+      <div class="ba-item" role="listitem">
+        <div class="ba-label">Before</div>
+        <img id="ba-before" src="images/before1.jpg" alt="Before image">
+      </div>
+      <div class="ba-item" role="listitem">
+        <div class="ba-label">After</div>
+        <img id="ba-after" src="images/after1.jpg" alt="After image">
+      </div>
+    </div>
+    <div class="ba-controls" aria-hidden="false">
+      <button id="ba-prev" class="ba-btn" aria-label="Previous pair">Prev</button>
+      <button id="ba-next" class="ba-btn" aria-label="Next pair">Next</button>
+    </div>
+    <div class="ba-dots" id="ba-dots" aria-hidden="true"></div>
+  </section>
+
+  <!-- Contact-wrap section at bottom -->
+  <div class="contact-wrap">
+    <div class="card contact-info">
+      <h2>Get in Touch</h2>
+      <div class="contact-row">
+        <span class="contact-icon">
+          <!-- Phone SVG -->
+          <svg width="24" height="24" fill="none" stroke="#0077cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92V19a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 3 5.18 2 2 0 0 1 5 3h2.09a2 2 0 0 1 2 1.72c.13.81.28 1.61.46 2.39a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6.29 6.29l1.27-1.27a2 2 0 0 1 2.11-.45c.78.18 1.58.33 2.39.46A2 2 0 0 1 22 16.92z"/></svg>
+        </span>
+        <a href="tel:+12505551234" aria-label="Call Angel's Cleaning Services">(250) 555-1234</a>
+      </div>
+      <div class="contact-row">
+        <span class="contact-icon">
+          <!-- Email SVG -->
+          <svg width="24" height="24" fill="none" stroke="#0077cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>
+        </span>
+        <a href="mailto:info@angelscleaning.ca" aria-label="Email Angel's Cleaning Services">info@angelscleaning.ca</a>
+      </div>
+      <div class="contact-hours">
+        <strong>Availability:</strong> Mon–Fri 8:00am–6:00pm
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Angels Cleaning Services | Licensed | Comox, BC</p>
+  </footer>
+
+  <script>
+    // Replace the file paths below with your uploaded images.
+    const pairs = [
+      { before: 'images/kitchen-before.jpg.jpg', after: 'images/kitchen-after.jpg.jpg' },
+      { before: 'images/microwave-before.jpg.jpg', after: 'images/mircowave-after.jpg.jpg' },
+      { before: 'images/stove-before.jpg.jpg', after: 'images/stove-after.jpg.jpg' }
+    ];
+
+    let baIndex = 0;
+    const beforeImg = document.getElementById('ba-before');
+    const afterImg = document.getElementById('ba-after');
+    const prevBtn = document.getElementById('ba-prev');
+    const nextBtn = document.getElementById('ba-next');
+    const dotsContainer = document.getElementById('ba-dots');
+    let rotateTimer;
+
+    function renderDots() {
+      dotsContainer.innerHTML = '';
+      pairs.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = 'ba-dot' + (i === baIndex ? ' active' : '');
+        dot.addEventListener('click', ()=> { showPair(i); resetTimer(); });
+        dotsContainer.appendChild(dot);
+      });
+    }
+
+    function showPair(i) {
+      baIndex = (i + pairs.length) % pairs.length;
+      const p = pairs[baIndex];
+      beforeImg.src = p.before;
+      afterImg.src = p.after;
+      // update dots
+      const dots = dotsContainer.children;
+      for(let d=0; d<dots.length; d++){
+        dots[d].classList.toggle('active', d === baIndex);
+      }
+    }
+
+    function nextPair(){ showPair(baIndex + 1); }
+    function prevPair(){ showPair(baIndex - 1); }
+
+    function resetTimer(){
+      clearInterval(rotateTimer);
+      rotateTimer = setInterval(nextPair, 4000);
+    }
+
+    // init
+    document.addEventListener('DOMContentLoaded', () => {
+      // build dots based on pairs length
+      renderDots();
+      showPair(0);
+      prevBtn.addEventListener('click', ()=> { prevPair(); resetTimer(); });
+      nextBtn.addEventListener('click', ()=> { nextPair(); resetTimer(); });
+      rotateTimer = setInterval(nextPair, 4000);
+    });
+
+    // Mobile dropdown toggle for Services
+    if (window.innerWidth <= 600) {
+      const dropdown = document.getElementById('services-dropdown');
+      const link = dropdown.querySelector('a');
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        dropdown.classList.toggle('active');
+      });
+    }
+  </script>
+ </body>
+</html>
