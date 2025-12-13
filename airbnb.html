@@ -21,6 +21,31 @@
       scroll-behavior: smooth;
     }
 
+    .top-strip {
+      background: #0077cc;
+      color: #fff;
+      font-size: 0.9rem;
+      padding: 8px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      text-align: center;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .top-strip a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+    .top-strip a:hover { opacity: 0.85; }
+    .top-strip .left { display:flex; gap:16px; align-items:center; justify-content:center; }
+    .top-strip .right { color:#fff; margin-left:8px; }
+
     header {
       background: linear-gradient(to right, var(--secondary), var(--primary));
       color: white;
@@ -182,6 +207,14 @@
   </style>
 </head>
 <body>
+  <div class="top-strip" role="contentinfo" aria-label="Contact and availability">
+    <div class="left">
+      <a href="mailto:angelicatemple@gmail.com" aria-label="Email Angel's Cleaning Services">angelicatemple@gmail.com</a>
+      <a href="tel:+12507028733" aria-label="Call Angel's Cleaning Services">(250) 702-8733</a>
+    </div>
+    <div class="right">Availability: Mon–Fri 8:00am–4:00pm</div>
+  </div>
+
   <header>
     <a href="index.html" class="back-link">← Back Home</a>
     <div class="logo">
