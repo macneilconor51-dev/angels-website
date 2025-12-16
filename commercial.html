@@ -81,9 +81,55 @@
       font-weight: 600;
       transition: 0.3s;
     }
-
     nav a:hover {
       text-decoration: underline;
+    }
+
+    .nav-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .nav-dropdown > a {
+      margin: 0 15px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .nav-dropdown > a:hover {
+      text-decoration: underline;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: 6px;
+      flex-direction: column;
+      gap: 4px;
+      padding: 8px 0;
+      min-width: 160px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+      z-index: 10;
+      margin-top: 0;
+    }
+    .nav-dropdown:hover .dropdown-menu {
+      display: flex;
+    }
+    .dropdown-menu a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 16px;
+      margin: 0;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+    .dropdown-menu a:hover {
+      background: rgba(255,255,255,0.1);
+      text-decoration: none;
     }
 
     .back-link {
@@ -200,9 +246,11 @@
         flex-direction: column;
         text-align: center;
       }
-      nav {
-        margin-top: 10px;
-      }
+      nav { margin-top: 10px; display: flex; align-items: flex-start; justify-content: center; gap: 0; }
+      .nav-dropdown { display: flex; flex-direction: column; align-items: center; }
+      .dropdown-menu { position: static; background: none; box-shadow: none; padding: 4px 0; }
+      .nav-dropdown:hover .dropdown-menu { display: none; }
+      .nav-dropdown.active .dropdown-menu { display: flex; }
       .service-hero h1 {
         font-size: 2rem;
       }
@@ -225,8 +273,15 @@
       <h1>Angel's Cleaning Services</h1>
     </div>
     <nav>
-      <a href="index.html#services">Services</a>
-      <a href="index.html#contact">Contact</a>
+      <div class="nav-dropdown" id="services-dropdown">
+        <a href="index.html#services">Services</a>
+        <div class="dropdown-menu">
+          <a href="commercial.html">Commercial Cleans</a>
+          <a href="residential.html">Residential</a>
+          <a href="airbnb.html">Air BnBs</a>
+        </div>
+      </div>
+      <a href="Contact-us.html">Contact</a>
     </nav>
   </header>
 
@@ -241,9 +296,9 @@
       Our commercial cleaning services are designed to keep your office, retail space, or industrial facility spotless and professional. We handle everything from daily janitorial services to deep cleaning, ensuring your business environment is clean, healthy, and welcoming.
     </p>
     <p>
-      With over 10 years of experience, we understand the unique needs of commercial properties and work around your schedule to minimize disruption to your business.
+      With over 7 years of experience, we understand the unique needs of commercial properties and work around your schedule to minimize disruption to your business.
     </p>
-    <a href="tel:+12507028733" class="btn">Book Your Estimate</a>
+    <a href="sms:+12507028733" class="btn">Text to book an appointment</a>
   </section>
 
   <section>
@@ -274,5 +329,17 @@
   <footer>
     <p>© 2025 Angels Cleaning Services | Licensed | Comox, BC</p>
   </footer>
+
+  <script>
+    // Mobile dropdown toggle for Services
+    if (window.innerWidth <= 600) {
+      const dropdown = document.getElementById('services-dropdown');
+      const dropdownLink = dropdown.querySelector('a');
+      dropdownLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        dropdown.classList.toggle('active');
+      });
+    }
+  </script>
 </body>
 </html>
