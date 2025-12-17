@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Commercial Cleaning | Angel's Cleaning Services</title>
+  <title>Contact Us | Angel's Cleaning Services</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -11,7 +11,6 @@
       --secondary: #00768d;
       --light-bg: #f4f7fb;
       --text: #333;
-      --max-width: 900px;
     }
 
     body {
@@ -22,18 +21,6 @@
       scroll-behavior: smooth;
     }
 
-    header {
-      background: linear-gradient(to right, var(--secondary), var(--primary));
-      color: white;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    }
-
-     /* Top strip with contact & availability — updated: black background, centered text */
     .top-strip {
       background: #0077cc;
       color: #fff;
@@ -59,12 +46,16 @@
     .top-strip .left { display:flex; gap:16px; align-items:center; justify-content:center; }
     .top-strip .right { color:#fff; margin-left:8px; }
 
-    @media (max-width:600px) {
-      .top-strip { flex-direction: column; text-align: center; padding: 6px 10px; font-size: 0.85rem; gap: 8px; }
-      .top-strip .left { flex-direction: column; gap: 8px; }
-      .top-strip .right { margin-left: 0; margin-top: 4px; }
+    header {
+      background: linear-gradient(to right, var(--secondary), var(--primary));
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
-
 
     .logo {
       display: flex;
@@ -183,7 +174,6 @@
       max-width: 900px;
       border-radius: 15px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      text-align: center;
     }
 
     h2 {
@@ -201,10 +191,6 @@
       display: block;
       margin-left: auto;
       margin-right: auto;
-    }
-
-    p { 
-        text-align: center;
     }
 
     .btn {
@@ -225,7 +211,7 @@
     }
 
     .contact-wrap {
-      max-width: var(--max-width);
+      max-width: 900px;
       margin: 40px auto 0;
       padding: 0 20px 60px;
       display: grid;
@@ -325,6 +311,9 @@
     }
 
     @media (max-width: 600px) {
+      .top-strip { padding: 6px 10px; font-size: 0.85rem; gap: 8px; }
+      .top-strip .left { flex-direction: column; gap: 8px; }
+      .top-strip .right { margin-left: 0; margin-top: 4px; }
       header {
         flex-direction: column;
         text-align: center;
