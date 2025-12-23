@@ -32,6 +32,9 @@
       gap: 12px;
       text-align: center;
       flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
     .top-strip a {
       color: #fff;
@@ -305,41 +308,57 @@
     .ba-dot.active { background: var(--primary); }
 
     .contact-wrap {
-      background: white;
-      margin: 40px auto;
-      padding: 40px 20px;
       max-width: 900px;
-      border-radius: 15px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      align-items: center;
-      text-align: center;
+      margin: 40px auto 0;
+      padding: 0 20px 60px;
     }
-
+    .card {
+      background: #fff;
+      padding: 32px 28px;
+      border-radius: 15px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      margin-bottom: 0;
+    }
     .contact-info {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 22px;
       align-items: center;
     }
-
+    .contact-info h2 {
+      margin-bottom: 12px;
+      color: var(--secondary);
+      font-size: 1.4rem;
+      text-align: left;
+    }
     .contact-row {
       display: flex;
       align-items: center;
       gap: 12px;
-      justify-content: center;
+      font-size: 1.08rem;
     }
-
     .contact-icon {
-      width: 24px;
-      height: 24px;
-      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 4px;
+      opacity: 0.85;
     }
-
-    .card {
-      padding: 0;
+    .contact-info a {
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-info a:hover {
+      color: var(--secondary);
+      text-decoration: underline;
+    }
+    .contact-hours {
+      color: #555;
+      font-size: 0.98rem;
+      margin-top: 8px;
     }
 
     @media (min-width: 601px) {
@@ -350,8 +369,10 @@
     @media (max-width: 600px) {
       .top-strip { flex-direction: column; text-align: center; padding: 10px 12px; }
       .top-strip .left { flex-direction: column; gap:6px; }
+      .top-strip .right { margin-left: 0; margin-top: 4px; }
       header { flex-direction: column; text-align: center; }
-      nav { margin-top: 10px; }
+      nav { margin-top: 10px; display: flex; align-items: flex-start; justify-content: center; gap: 0; }
+      .nav-dropdown { display: flex; flex-direction: column; align-items: center; }
       .dropdown-menu { position: static; background: none; box-shadow: none; padding: 4px 0; }
       .nav-dropdown:hover .dropdown-menu { display: none; }
       .nav-dropdown.active .dropdown-menu { display: flex; }
@@ -371,10 +392,10 @@
 <body>
   <div class="top-strip" role="contentinfo" aria-label="Contact and availability">
     <div class="left">
-      <a href="mailto:info@angelscleaning.ca" aria-label="Email Angel's Cleaning Services">info@angelscleaning.ca</a>
-      <a href="tel:+12505551234" aria-label="Call Angel's Cleaning Services">(250) 555-1234</a>
+      <a href="mailto:angelicatemple@gmail.com" aria-label="Email Angel's Cleaning Services">angelicatemple@gmail.com</a>
+      <a href="sms:+12507028733" aria-label="Call Angel's Cleaning Services">(250) 702-8733</a>
     </div>
-    <div class="right">Availability: Mon–Fri 8:00am–6:00pm</div>
+    <div class="right">Availability: Mon–Fri 8:00am–4:00pm</div>
   </div>
 
   <header>
@@ -386,7 +407,7 @@
       <div class="nav-dropdown" id="services-dropdown">
         <a href="#services">Services</a>
         <div class="dropdown-menu">
-          <a href="commercial.html">Commercial Cleans</a>
+          <a href="commercial.html">Commercial</a>
           <a href="residential.html">Residential</a>
           <a href="airbnb.html">Air BnBs</a>
         </div>
@@ -401,9 +422,9 @@
       <p>Licensed, insured, and trusted. Text to book an appointment.</p>
       <div class="hero-cta">
         <!-- Mobile: opens SMS app (visible only on small screens) -->
-        <a href="sms:+12505551234" class="btn mobile-only" aria-label="Text Angel's Cleaning Services">Text</a>
+        <a href="sms:+12507028733" class="btn mobile-only" aria-label="Text Angel's Cleaning Services">Text</a>
         <!-- Desktop: clickable tel link with cleaner styling -->
-        <a href="tel:+12505551234" class="btn desktop-only" aria-label="Call Angel's Cleaning Services">Call/Text: (250) 555-1234</a>
+        <a href="tel:+12507028733" class="btn desktop-only" aria-label="Call Angel's Cleaning Services">Call/Text: (250) 702-8733</a>
       </div>
     </div>
   </div>
@@ -441,11 +462,11 @@
     <div class="ba-grid" role="list">
       <div class="ba-item" role="listitem">
         <div class="ba-label">Before</div>
-        <img id="ba-before" src="images/before1.jpg" alt="Before image">
+        <img id="ba-before" src="images/kitchen-before.jpg.jpg" alt="Before image">
       </div>
       <div class="ba-item" role="listitem">
         <div class="ba-label">After</div>
-        <img id="ba-after" src="images/after1.jpg" alt="After image">
+        <img id="ba-after" src="images/kitchen-after.jpg.jpg" alt="After image">
       </div>
     </div>
     <div class="ba-controls" aria-hidden="false">
@@ -464,17 +485,17 @@
           <!-- Phone SVG -->
           <svg width="24" height="24" fill="none" stroke="#0077cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92V19a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 3 5.18 2 2 0 0 1 5 3h2.09a2 2 0 0 1 2 1.72c.13.81.28 1.61.46 2.39a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6.29 6.29l1.27-1.27a2 2 0 0 1 2.11-.45c.78.18 1.58.33 2.39.46A2 2 0 0 1 22 16.92z"/></svg>
         </span>
-        <a href="tel:+12505551234" aria-label="Call Angel's Cleaning Services">(250) 555-1234</a>
+        <a href="tel:+12507028733" aria-label="Call Angel's Cleaning Services">(250) 702-8733</a>
       </div>
       <div class="contact-row">
         <span class="contact-icon">
           <!-- Email SVG -->
           <svg width="24" height="24" fill="none" stroke="#0077cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>
         </span>
-        <a href="mailto:info@angelscleaning.ca" aria-label="Email Angel's Cleaning Services">info@angelscleaning.ca</a>
+        <a href="mailto:angelicatemple@gmail.com" aria-label="Email Angel's Cleaning Services">angelicatemple@gmail.com</a>
       </div>
       <div class="contact-hours">
-        <strong>Availability:</strong> Mon–Fri 8:00am–6:00pm
+        <strong>Availability:</strong> Mon–Fri 8:00am–4:00pm
       </div>
     </div>
   </div>
